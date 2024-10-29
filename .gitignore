@@ -4,3 +4,6 @@ venv
 
 # database
 auth.db
+
+# project specific
+.env
