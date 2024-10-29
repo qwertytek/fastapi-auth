@@ -1,6 +1,6 @@
 from typing import Annotated
 from fastapi import Depends
-from database import SessionLocal
+from app.database import SessionLocal
 from sqlalchemy.orm import Session
 
 def get_db():
