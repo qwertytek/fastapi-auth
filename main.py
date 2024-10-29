@@ -1,22 +1,12 @@
 from fastapi import FastAPI, Depends, status, HTTPException
-from database import engine, SessionLocal
+from database import engine
 from typing import Annotated
-from sqlalchemy.orm import Session
+from dependencies import db_dependency 
 import models
 
 app = FastAPI()
 
 models.Base.metadata.create_all(bind=engine)
-
-def get_db():
-    db = SessionLocal()
-
-    try:
-        yield db
-    finally:
-        db.close()
-
-db_dependency = Annotated[Session, Depends(get_db)]
 
 @app.get("/", status_code=status.HTTP_200_OK)
 async def user(user: None, db: db_dependency):
