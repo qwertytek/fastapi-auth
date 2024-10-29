@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from app.database import engine
 # from typing import Annotated
 from app.router.api import user
+from app.router import token
 # from app.dependencies import db_dependency
 import app.models.users as models
 
@@ -12,6 +13,7 @@ models.Base.metadata.create_all(bind=engine)
 
 # ROUTER
 app.include_router(user.router)
+app.include_router(token.router)
 
 
 # @app.get("/", status_code=status.HTTP_200_OK)
